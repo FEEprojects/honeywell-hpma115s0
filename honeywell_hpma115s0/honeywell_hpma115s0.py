@@ -2,7 +2,7 @@
     Wrapper classes for the Honeywell HPMA115S0.
     Florentin Bulot
     15/01/2019
-    based on https://github.com/FEEprojects/plantower 
+    based on https://github.com/FEEprojects/plantower
 """
 
 import logging
@@ -23,7 +23,7 @@ class HoneywellReading(object):
     """
         Describes a single reading from the Honeywell sensor
     """
-   def __init__(self, line):
+    def __init__(self, line):
         """
             Takes a line from the Honeywell serial port and converts it into
             an object containing the data
@@ -31,7 +31,6 @@ class HoneywellReading(object):
         self.timestamp = datetime.utcnow()
         self.pm10 = line[8] * 256 + line[9]
         self.pm25 = line[6] * 256 + line[7]
-        
 
     def __str__(self):
         return (
@@ -100,7 +99,7 @@ class Honeywell(object):
         sent = (recv[-2] << 8) | recv[-1] # Combine the 2 bytes together
         if sent != calc:
             self.logger.error("Checksum failure %d != %d", sent, calc)
-            raise HPMAException("Checksum failure")
+            raise HoneywellException("Checksum failure")
 
     def read(self, perform_flush=True):
         """
