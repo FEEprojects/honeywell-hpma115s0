@@ -29,8 +29,8 @@ class HoneywellReading(object):
             an object containing the data
         """
         self.timestamp = datetime.utcnow()
-        self.pm10 = line[8] * 256 + line[9]
-        self.pm25 = line[6] * 256 + line[7]
+        self.pm10 = round(line[8] * 256 + line[9], 1)
+        self.pm25 = round(line[6] * 256 + line[7], 1)
 
     def __str__(self):
         return (
@@ -125,4 +125,4 @@ class Honeywell(object):
                     self._verify(recv) # verify the checksum
                     return HoneywellReading(recv) # convert to reading object
             #If the character isn't what we are expecting loop until timeout
-        raise HoneywellException("No message recieved")
+        raise HoneywellException("No message received")
