@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="honeywell_hpma115s0",
-    version="0.0.2",
+    version="0.0.3",
     author="Florentin Bulot",
     author_email="f.bulot@soton.ac.uk",
     description="An interface for honeywell HPMA115S0 particulate matter sensors",
